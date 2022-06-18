@@ -1,4 +1,10 @@
 let choice = '';
+let score = 0;
+let i = 0;
+
+
+
+
 let questions = [
     {
         question: "what is the airspeed velocity of an unladen swallow?",
@@ -16,23 +22,24 @@ let questions = [
         choice4: "infinity",
         correct: 'a'
     }
+
 ];
+
 
 function displayQuestions() {
 
-
     let questionEl = document.querySelector('#questionText');
-    questionEl.textContent = questions[0].question;
+    questionEl.textContent = questions[i].question;
 
     let choiceEl1 = document.querySelector('#choice1');
     let choiceEl2 = document.querySelector('#choice2');
     let choiceEl3 = document.querySelector('#choice3');
     let choiceEl4 = document.querySelector('#choice4');
    
-    choiceEl1.textContent = questions[0].choice1;
-    choiceEl2.textContent = questions[0].choice2;
-    choiceEl3.textContent = questions[0].choice3;
-    choiceEl4.textContent = questions[0].choice4;
+    choiceEl1.textContent = questions[i].choice1;
+    choiceEl2.textContent = questions[i].choice2;
+    choiceEl3.textContent = questions[i].choice3;
+    choiceEl4.textContent = questions[i].choice4;
 
     choiceEl1.addEventListener("click", e => {
         let choice = 'a';
@@ -50,20 +57,24 @@ function displayQuestions() {
         let choice = 'd';
         quizLogic(choice);
     })
-};
 
-
-function quizLogic(choice){
+    function quizLogic(choice){
     
-    console.log(choice);
-    if(choice === questions[0].correct){
-        console.log("you chose right")
-    }
-    else {
-        console.log("you are wrong")
-    }
 
-}
-
+        console.log(choice);
+        if(choice === questions[i].correct){
+            score++;
+            alert("That is correct, your current score is: " + score);
+            i++;
+            displayQuestions();
+            
+        }
+        else {
+            alert("Sorry Thats Wrong");
+            i++;
+            displayQuestions();
+        }
+    }
+};
 
 displayQuestions();
