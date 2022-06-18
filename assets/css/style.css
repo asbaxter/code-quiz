@@ -1,3 +1,31 @@
-li {
-    list-style-type: none;
+* {
+    background-color: lightgrey;
+}
+
+.quiz {
+    margin: auto;
+    width: 50%;
+    border: 3px solid black;
+    padding: 10px;
+    text-align: center;
+}
+
+.questionText {
+    width: 75%;
+    background-color: darkgrey;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 15px;
+    border: 3px solid black;
+}
+
+.answerText {
+    background-color: darkgrey;
+    width: 30%;
+    border: 3px solid black;
+    padding: 10px;
+    text-align: center;
+    font: weight;
+    margin-left: auto;
+    margin-right: auto;
 }
