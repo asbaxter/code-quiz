@@ -19,7 +19,7 @@
     border: 3px solid black;
 }
 
-#answerText {
+.answerText {
     background-color: darkgrey;
     width: 30%;
     border: 3px solid black;
@@ -30,6 +30,6 @@
     margin-right: auto;
 }
 
-#answerText:hover {
+.answerText:hover {
     border: 5px solid black;
 }
