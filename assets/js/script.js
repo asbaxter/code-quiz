@@ -1,112 +1,85 @@
 let score = 0;
-let i = 0;
+let currentQuestionIndex = 0;
+let questionEl = document.querySelector('#questionText');
+let optionsEl = document.querySelector('#options');
 
 // arrays hold all needed question data
-let questions = [
+const questions = [
     {
         question: "what is the airspeed velocity of an unladen swallow?",
-        choice1: "Fast",
-        choice2: "speedy",
-        choice3: "slow",
-        choice4: "turtle",
-        correct: 'a'
+        choices: ['fast', 'speedy', 'slow', 'turtle'],
+        correct: 'fast'
     },
     {
         question: "how much wood could a woodchuck chuck",
-        choice1: "a lot",
-        choice2: "a little",
-        choice3: "none",
-        choice4: "infinity",
-        correct: 'a'
+        choices: ['a lot', 'a little', 'none', 'infinity'],
+        correct: 'a little'
     },
     {
-        question: "I should rpbably start getting real questions soon",
-        choice1: "no",
-        choice2: "your fine",
-        choice3: "keep doing",
-        choice4: "you",
-        correct: 'a'
+        question: "I should probably start getting real questions soon",
+        choices: ['no', 'okay', 'keep doing you', 'reeee'],
+        correct: 'reeee'
     }
 
 ];
 
 function displayQuestions() {
-// continue running through questions if more remain
 
-    let scoreEl = document.querySelector('#score');
-    let questionEl = document.querySelector('#questionText');
-// creates javascript element tied to html id of choice1
-    let choiceEl1 = document.querySelector('#choice1');
-    let choiceEl2 = document.querySelector('#choice2');
-    let choiceEl3 = document.querySelector('#choice3');
-    let choiceEl4 = document.querySelector('#choice4');
- 
-if (questions.length > i){
-    scoreEl.textContent = "Score: " + score;
-    questionEl.textContent = questions[i].question;
-// displays the different answers for each question
-    choiceEl1.textContent = questions[i].choice1;
-    choiceEl2.textContent = questions[i].choice2;
-    choiceEl3.textContent = questions[i].choice3;
-    choiceEl4.textContent = questions[i].choice4;
-// on click run quiz logic to determine if click was correct
-    choiceEl1.addEventListener("click", e => {
-        let choice = 'a';
-        quizLogic(choice);
+let currentQuestion = questions[currentQuestionIndex];
+console.log(currentQuestion.question);
+
+questionEl.textContent = currentQuestion.question;
+optionsEl.textContent = '';
+for (let i = 0; i < currentQuestion.choices.length; i++){
+
+    let option = document.createElement('button');
+    option.setAttribute('class', 'answerText');
+    option.setAttribute('value', currentQuestion.choices[i]);
+    option.textContent = currentQuestion.choices[i];
+    option.addEventListener('click', function(){
+        quizLogic(option.textContent);
     })
-    choiceEl2.addEventListener("click", e => {
-        let choice = 'b';
-        quizLogic(choice);
-    })
-    choiceEl3.addEventListener("click", e => {
-        let choice = 'c';
-        quizLogic(choice);
-    })
-    choiceEl4.addEventListener("click", e => {
-        let choice = 'd';
-        quizLogic(choice);
-    })
-}
-else {
-    gameOver();
+
+    optionsEl.appendChild(option);
 }
 };
 // tests if the user input was correct and changes the score accordingly
-function quizLogic(choice){
+function quizLogic(answer){
+
+    if (answer === questions[currentQuestionIndex].correct){
+        console.log("you are right");
+    }
+    else{
+        console.log("you are wrong");
+    }
     
-
-    console.log(choice);
-    if(choice === questions[i].correct){
-        score++;
-        i++;
+    currentQuestionIndex++;//next question
+    if (currentQuestionIndex === questions.length){
+        gameOver();
     }
-
     else {
-        alert("wrong")
-        i++;
+        displayQuestions();
     }
-    displayQuestions();
 }
 
 
 function gameOver(){
 
-// removes uneeded div items for gameover screen
-    for (i = 0; i < 3; i++){
-        let answersEl = document.querySelector('#answers');
-        answersEl.remove();
-    }
 
-//changes question text to game over text
-    let questionEl = document.querySelector('#questionText');
-    questionEl.textContent = 'Game Over';
+    let currentQuestion = document.querySelector('#questionText');
+    currentQuestion.textContent = 'Game Over';
 
-    let choiceEl4 = document.querySelector('#choice4');
-    choiceEl4.textContent = "Play Again?"
-// on click this reloads the webpage restarting the javascript and html / replays game
-    choiceEl4.addEventListener("click", e => {
+    optionsEl.textContent = '';
+    let option = document.createElement('button');
+    option.textContent = "Play Again";
+    
+    option.addEventListener('click', function(){
         window.location= "../../index.html"
-    })
+     })
+
+     optionsEl.appendChild(option);
+
 }
+
 
 displayQuestions();
