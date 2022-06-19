@@ -1,8 +1,5 @@
 let score = 0;
 let i = 0;
-let choice = '';
-
-
 
 let questions = [
     {
@@ -83,9 +80,21 @@ else {
 
 function gameOver(){
 
-    alert("game over your final score is: " + score);
+    for (i = 0; i < 3; i++){
+        let answersEl = document.querySelector('#answers');
+        answersEl.remove();
+    }
 
+    let questionEl = document.querySelector('#questionText');
+    questionEl.textContent = 'Game Over';
 
+    let choiceEl4 = document.querySelector('#choice4');
+    choiceEl4.textContent = "Play Again?"
+
+    choiceEl4.addEventListener("click", e => {
+        location.reload();
+    })
 }
 
 displayQuestions();
+
