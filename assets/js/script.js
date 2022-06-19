@@ -2,6 +2,7 @@ let score = 0;
 let currentQuestionIndex = 0;
 let questionEl = document.querySelector('#questionText');
 let optionsEl = document.querySelector('#options');
+let secondCounter = 00;
 
 // arrays hold all needed question data
 const questions = [
@@ -26,13 +27,14 @@ const questions = [
 function displayQuestions() {
 
 let currentQuestion = questions[currentQuestionIndex];
-console.log(currentQuestion.question);
 
 questionEl.textContent = currentQuestion.question;
 optionsEl.textContent = '';
 for (let i = 0; i < currentQuestion.choices.length; i++){
 
     let option = document.createElement('button');
+    let scoreEl = document.querySelector('#score');
+    scoreEl.textContent = ("Score: "+ score);
     option.setAttribute('class', 'answerText');
     option.setAttribute('value', currentQuestion.choices[i]);
     option.textContent = currentQuestion.choices[i];
@@ -48,6 +50,7 @@ function quizLogic(answer){
 
     if (answer === questions[currentQuestionIndex].correct){
         console.log("you are right");
+        score++;
     }
     else{
         console.log("you are wrong");
@@ -62,13 +65,14 @@ function quizLogic(answer){
     }
 }
 
-
 function gameOver(){
 
 
+    let scoreEl = document.querySelector('#score');
+    scoreEl.textContent = ("Score: "+ score);
+
     let currentQuestion = document.querySelector('#questionText');
     currentQuestion.textContent = 'Game Over';
-
     optionsEl.textContent = '';
     let option = document.createElement('button');
     option.textContent = "Play Again";
@@ -78,8 +82,31 @@ function gameOver(){
      })
 
      optionsEl.appendChild(option);
+}
+function timer (){
 
+    var timeoutHandle;
+    function countdown(minutes, seconds) {
+    function tick() {
+        var counter = document.getElementById("timer");
+        counter.innerHTML =
+            "Time: " + minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
+        seconds--;
+        if (seconds >= 0) {
+            timeoutHandle = setTimeout(tick, 1000);
+        } else {
+            if (minutes >= 1) {
+                setTimeout(function () {
+                    countdown(minutes - 1, 59);
+                }, 1000);
+            }
+        }
+    }
+    tick();
 }
 
+countdown(2, 00);
+}
 
+timer();
 displayQuestions();
