@@ -86,6 +86,7 @@ function gameOver(){
 
         localStorage.setItem("score", JSON.stringify(score));
         localStorage.setItem("playerName", (form.value));
+        window.location.replace('../../index.html');
         
      })
 
