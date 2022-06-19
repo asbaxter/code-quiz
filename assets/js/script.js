@@ -18,22 +18,32 @@ let questions = [
         choice3: "none",
         choice4: "infinity",
         correct: 'a'
+    },
+    {
+        question: "I should rpbably start getting real questions soon",
+        choice1: "no",
+        choice2: "your fine",
+        choice3: "keep doing",
+        choice4: "you",
+        correct: 'a'
     }
 
 ];
 
 function displayQuestions() {
 // continue running through questions if more remain
-if (questions.length > i){
 
+    let scoreEl = document.querySelector('#score');
     let questionEl = document.querySelector('#questionText');
-    questionEl.textContent = questions[i].question;
 // creates javascript element tied to html id of choice1
     let choiceEl1 = document.querySelector('#choice1');
     let choiceEl2 = document.querySelector('#choice2');
     let choiceEl3 = document.querySelector('#choice3');
     let choiceEl4 = document.querySelector('#choice4');
-   
+ 
+if (questions.length > i){
+    scoreEl.textContent = "Score: " + score;
+    questionEl.textContent = questions[i].question;
 // displays the different answers for each question
     choiceEl1.textContent = questions[i].choice1;
     choiceEl2.textContent = questions[i].choice2;
@@ -56,29 +66,28 @@ if (questions.length > i){
         let choice = 'd';
         quizLogic(choice);
     })
-// tests if the user input was correct and changes the score accordingly
-    function quizLogic(choice){
-    
-
-        console.log(choice);
-        if(choice === questions[i].correct){
-            score++;
-            alert("That is correct, your current score is: " + score);
-            i++;
-            displayQuestions();
-        }
-
-        else {
-            alert("Sorry Thats Wrong");
-            i++;
-            displayQuestions();
-        }
-    }
 }
 else {
     gameOver();
 }
+};
+// tests if the user input was correct and changes the score accordingly
+function quizLogic(choice){
+    
+
+    console.log(choice);
+    if(choice === questions[i].correct){
+        score++;
+        i++;
+    }
+
+    else {
+        alert("wrong")
+        i++;
+    }
+    displayQuestions();
 }
+
 
 function gameOver(){
 
@@ -101,4 +110,3 @@ function gameOver(){
 }
 
 displayQuestions();
-
