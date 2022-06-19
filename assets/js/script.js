@@ -2,7 +2,8 @@ let score = 0;
 let currentQuestionIndex = 0;
 let questionEl = document.querySelector('#questionText');
 let optionsEl = document.querySelector('#options');
-let secondCounter = 00;
+
+
 
 // arrays hold all needed question data
 const questions = [
@@ -54,6 +55,7 @@ function quizLogic(answer){
     }
     else{
         console.log("you are wrong");
+        
     }
     
     currentQuestionIndex++;//next question
@@ -74,20 +76,29 @@ function gameOver(){
     let currentQuestion = document.querySelector('#questionText');
     currentQuestion.textContent = 'Game Over';
     optionsEl.textContent = '';
-    let option = document.createElement('button');
-    option.textContent = "Play Again";
+
+    let btn = document.createElement('button');
+    let form = document.createElement('input');
+    let playerName = form.textContent;
+
+    btn.textContent = "Submit Score";
     
-    option.addEventListener('click', function(){
-        window.location= "../../index.html"
+    btn.addEventListener('click', function(){
+        console.log(playerName + ' ' + score);
+        localStorage.setItem("score", JSON.stringify(score));
+        localStorage.setItem("playerName", JSON.stringify(form));
+        
      })
 
-     optionsEl.appendChild(option);
+     optionsEl.appendChild(btn);
+     optionsEl.appendChild(form);
 }
 function timer (){
 
     var timeoutHandle;
     function countdown(minutes, seconds) {
     function tick() {
+
         var counter = document.getElementById("timer");
         counter.innerHTML =
             "Time: " + minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
@@ -103,7 +114,7 @@ function timer (){
         }
     }
     tick();
-}
+    }
 
 countdown(2, 00);
 }
