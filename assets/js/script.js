@@ -1,7 +1,6 @@
-let choice = '';
 let score = 0;
 let i = 0;
-
+let choice = '';
 
 
 
@@ -25,8 +24,9 @@ let questions = [
 
 ];
 
-
 function displayQuestions() {
+
+if (questions.length > i){
 
     let questionEl = document.querySelector('#questionText');
     questionEl.textContent = questions[i].question;
@@ -67,14 +67,25 @@ function displayQuestions() {
             alert("That is correct, your current score is: " + score);
             i++;
             displayQuestions();
-            
         }
+
         else {
             alert("Sorry Thats Wrong");
             i++;
             displayQuestions();
         }
     }
-};
+}
+else {
+    gameOver();
+}
+}
+
+function gameOver(){
+
+    alert("game over your final score is: " + score);
+
+
+}
 
 displayQuestions();
