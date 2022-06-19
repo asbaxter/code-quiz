@@ -79,14 +79,13 @@ function gameOver(){
 
     let btn = document.createElement('button');
     let form = document.createElement('input');
-    let playerName = form.textContent;
 
     btn.textContent = "Submit Score";
     
     btn.addEventListener('click', function(){
-        console.log(playerName + ' ' + score);
+
         localStorage.setItem("score", JSON.stringify(score));
-        localStorage.setItem("playerName", JSON.stringify(form));
+        localStorage.setItem("playerName", (form.value));
         
      })
 
