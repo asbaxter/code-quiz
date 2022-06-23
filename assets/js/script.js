@@ -2,8 +2,7 @@ let score = 0;
 let currentQuestionIndex = 0;
 let questionEl = document.querySelector('#questionText');
 let optionsEl = document.querySelector('#options');
-seconds = 00;
-
+let seconds;
 
 // arrays hold all needed question data
 const questions = [
@@ -55,8 +54,7 @@ function quizLogic(answer){
     }
     else{
         console.log("you are wrong");
-        seconds = seconds - 25;
-
+        time = time - 15;
     }
     
     currentQuestionIndex++;//next question
@@ -95,33 +93,30 @@ function gameOver(){
      optionsEl.appendChild(form);
 }
 
-var timeoutHandle;
-    function countdown(minutes, seconds) {
+const startingMinutes = 1.1;
+let time = startingMinutes * 60;
+        
+const countDownEl = document.getElementById('countDown');
 
-        function tick() {
+const myInterval = setInterval(updateCountdown, 1000);
 
-            var counter = document.getElementById("timer");
-            counter.innerHTML =
-                "Time: " + minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
-            seconds--;
-            if (seconds >= 0) {
-                timeoutHandle = setTimeout(tick, 1000);
-            } else {
-                if (minutes >= 1) {
-                    setTimeout(function () {
-                        countdown(minutes - 1, 59);
-                    }, 1000);
-                }
-            }
-            
-        }
-        tick();
+function updateCountdown(){
+    const minutes = Math.floor(time / 60);
+    let seconds = time % 60;
+    if(seconds < 10){
+        seconds = '0' + seconds;
+    }
+    else{
+        seconds = seconds;
+    }
+    if (time === 0){
+        clearInterval(myInterval);
+        gameOver();
+    }
+
+    countDownEl.innerHTML = "Timer: " + minutes + ":" + seconds;
+     time--;
+
 }
 
-
-        
-        
-
-
-countdown(2, 00);
 displayQuestions();

@@ -8,7 +8,6 @@ function displayHighScore() {
     let highScoreEl = document.querySelector('.highScore');
     highScoreEl.textContent = player + " " + highScore;
 
-
 }
     
 displayHighScore();
