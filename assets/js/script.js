@@ -7,19 +7,29 @@ let seconds;
 // arrays hold all needed question data
 const questions = [
     {
-        question: "what is the airspeed velocity of an unladen swallow?",
-        choices: ['fast', 'speedy', 'slow', 'turtle'],
-        correct: 'fast'
+        question: "Javascript is an _______ language?",
+        choices: ['Object-Oriented', 'Object-Based', 'Procedural', 'None of the above'],
+        correct: 'Object-Oriented'
     },
     {
-        question: "how much wood could a woodchuck chuck",
-        choices: ['a lot', 'a little', 'none', 'infinity'],
-        correct: 'a little'
+        question: "Which of the following keywords is used to define a variable in Javascript?",
+        choices: ['var', 'let', 'both A and B', 'None of the above'],
+        correct: 'both A and B'
     },
     {
-        question: "I should probably start getting real questions soon",
-        choices: ['no', 'okay', 'keep doing you', 'reeee'],
-        correct: 'reeee'
+        question: "How can a datatype be declared to be a constant type?",
+        choices: ['const', 'var', 'let', 'constant'],
+        correct: 'const'
+    },
+    {
+        question: "Which of the following methods is used to access HTML elements using Javascript?",
+        choices: ['getElementbyid()', 'getElementsByClassName()', 'Both A and B', 'None of the above'],
+        correct: 'Both A and B'
+    },
+    {
+        question: "Which of the following methods can be used to display data in some form using Javascript?",
+        choices: ['document.write()', 'console.log()', 'window.alert()', 'All of the above'],
+        correct: 'All of the above'
     }
 
 ];
