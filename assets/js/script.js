@@ -67,7 +67,7 @@ function quizLogic(answer){
 }
 
 function gameOver(){
-
+    clearInterval(myInterval);
 
     let scoreEl = document.querySelector('#score');
     scoreEl.textContent = ("Score: "+ score);
@@ -93,7 +93,7 @@ function gameOver(){
      optionsEl.appendChild(form);
 }
 
-const startingMinutes = 1.1;
+const startingMinutes = 2;
 let time = startingMinutes * 60;
         
 const countDownEl = document.getElementById('countDown');
@@ -110,7 +110,6 @@ function updateCountdown(){
         seconds = seconds;
     }
     if (time === 0){
-        clearInterval(myInterval);
         gameOver();
     }
 
