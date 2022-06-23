@@ -2,7 +2,6 @@ let score = 0;
 let currentQuestionIndex = 0;
 let questionEl = document.querySelector('#questionText');
 let optionsEl = document.querySelector('#options');
-minutes = 2;
 seconds = 00;
 
 
@@ -56,6 +55,7 @@ function quizLogic(answer){
     }
     else{
         console.log("you are wrong");
+        seconds = seconds - 25;
 
     }
     
@@ -123,5 +123,5 @@ var timeoutHandle;
         
 
 
-countdown(minutes, seconds);
+countdown(2, 00);
 displayQuestions();
